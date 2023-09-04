@@ -5,7 +5,10 @@
     </label>
     <select
       class="a-select__field"
-      :class="{ 'a-select__field--error': hasValidationError }"
+      :class="{
+        'a-select__field--error': hasValidationError,
+        'a-select__field--bordered': bordered
+      }"
       :value="value"
       :disabled="disabled"
       @input="updateValue"
@@ -14,7 +17,10 @@
         v-if="placeholder"
         disabled
         value=""
-      >{{ placeholder }}</option>
+        :selected="value === ''"
+      >
+        {{ placeholder }}
+      </option>
       <option
         v-for="option in options"
         :key="option[optionValue]"
@@ -23,9 +29,11 @@
         {{ option[optionText] }}
       </option>
     </select>
-    <transition-group name="validation-fade"
-                      mode="out-in"
-                      class="a-select__validation">
+    <transition-group
+      name="validation-fade"
+      mode="out-in"
+      class="a-select__validation"
+    >
       <span v-if="hasValidationError" :key="validationMessage.validator">
         {{ validationMessage.message }}
       </span>
@@ -73,6 +81,10 @@ export default {
     validateOnBlur: {
       type: Boolean,
       default: true
+    },
+    bordered: {
+      type: Boolean,
+      default: false,
     },
   },
   computed: {
@@ -131,10 +143,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
 .a-select {
   &__container {
+    position: relative;
     display: flex;
     flex-direction: column;
   }
@@ -154,12 +167,20 @@ export default {
       outline: none;
       border-color: $blue-color;
     }
+
+    &--bordered {
+      border-color: $light-gray;
+    }
+
+    &--error {
+      border-color: $red-color;
+    }
   }
 
   &__validation {
     position: absolute;
     text-align: left;
-    top: 100%;
+    top: 43px;
     color: $red-color;
     border-bottom-color: $red-color;
     font-size: 13px;

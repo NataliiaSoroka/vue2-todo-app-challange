@@ -3,8 +3,4 @@ export default [
   { icon: 'envelope', field: 'email' },
   { icon: 'phone', field: 'phone' },
   { icon: 'globe', field: 'website' },
-  // { icon: '', field: '' },
-  // { icon: '', field: '' },
-  // { icon: '', field: '' },
-  // { icon: '', field: '' },
 ]

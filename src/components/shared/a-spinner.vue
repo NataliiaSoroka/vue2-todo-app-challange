@@ -6,11 +6,9 @@
       :class="classes"
       :style="{ 'width': size + 'px', 'height': size + 'px' }"
     >
-      <!-- Alternative circle rendering to explore: http://jsfiddle.net/6e3QJ/29/ -->
       <svg
         class="ui-progress-circular__determinate"
         role="progressbar"
-
         :aria-valuemax="100"
         :aria-valuemin="0"
         :aria-valuenow="progress"
@@ -23,7 +21,6 @@
           class="ui-progress-circular__determinate-path"
           fill="transparent"
           stroke-dashoffset="0"
-
           :cx="size / 2"
           :cy="size / 2"
           :r="radius"
@@ -36,7 +33,6 @@
         class="ui-progress-circular__indeterminate"
         role="progressbar"
         viewBox="25 25 50 50"
-
         :aria-valuemax="100"
         :aria-valuemin="0"
 
@@ -49,7 +45,6 @@
           fill="none"
           r="20"
           stroke-miterlimit="10"
-
           :stroke-width="calculatedStroke"
         ></circle>
       </svg>

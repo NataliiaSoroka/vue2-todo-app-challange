@@ -18,7 +18,5 @@ export default [
   {
     text: 'Favorites',
     value: 'fav',
-    color: 'purple',
-    icon: 'lab la-gratipay',
   }
 ]

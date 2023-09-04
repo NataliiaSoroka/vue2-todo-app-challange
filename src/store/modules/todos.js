@@ -23,7 +23,23 @@ const actions = {
       method: 'DELETE',
     })
     await data
-    commit(types.REMOVE_TODOS, getters.todos.filter(t => t.id !== id))
+    commit(types.REMOVE_TODO, getters.todos.filter(t => t.id !== id))
+  },
+  async addTodo({ commit }, model) {
+    const data = await fetch(api.todos, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(model),
+    })
+    const result = await data.json()
+    const todo = {
+      ...result,
+      userId: +result.userId,
+      completed: false,
+    }
+    commit(types.ADD_TODO, todo)
   }
 }
 
@@ -31,8 +47,11 @@ const mutations = {
   [types.GET_TODOS](state, todos) {
     state.todos = todos
   },
-  [types.REMOVE_TODOS](state, todos) {
+  [types.REMOVE_TODO](state, todos) {
     state.todos = todos
+  },
+  [types.ADD_TODO](state, todo) {
+    state.todos = [todo, ...state.todos]
   }
 }
 

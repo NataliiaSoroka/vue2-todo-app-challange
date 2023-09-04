@@ -86,7 +86,7 @@ export default {
   },
   methods: {
     setFilter() {
-      this.$emit('input', this.filterModel)
+      this.$emit('input', { ...this.filterModel })
     },
     resetFilter() {
       this.filterModel = { ...initFilterModel }

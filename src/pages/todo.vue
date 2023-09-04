@@ -5,8 +5,9 @@
       <todo-filter class="todo-header__item filter" v-model="filterModel"/>
     </div>
     <div class="todo-list">
+      <add-todo-form />
       <todo-item
-        v-for="item in todos"
+        v-for="item in filteredTodos"
         :key="item.id"
         :item="item"
         :favorites="favorites"
@@ -19,7 +20,12 @@
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
-import { TodoItem, UserData, TodoFilter } from 'components'
+import {
+  TodoItem,
+  UserData,
+  TodoFilter,
+  AddTodoForm,
+} from 'components'
 
 export default {
   name: 'Todos',
@@ -27,11 +33,12 @@ export default {
     TodoItem,
     UserData,
     TodoFilter,
+    AddTodoForm,
   },
   data() {
     return {
       favorites: [],
-      filterModel: {}
+      filterModel: {},
     }
   },
   computed: {
@@ -39,6 +46,22 @@ export default {
     currentUser() {
       return this.mapUsersById && this.mapUsersById[this.$route.params.userId]
     },
+    filteredTodos() {
+      const predicates = []
+      if (this.filterModel?.title) {
+        predicates.push(todo => todo.title.includes(this.filterModel.title))
+      }
+      if (this.filterModel?.userId) {
+        predicates.push(todo => todo.userId.toString() === this.filterModel.userId)
+      }
+      if (this.filterModel?.status && this.filterModel.status !== 'fav') {
+        predicates.push(todo => todo.completed.toString() === this.filterModel.status)
+      }
+      if (this.filterModel?.status === 'fav') {
+        predicates.push(todo => this.favorites.includes(todo.id))
+      }
+      return this.todos?.filter(todo => predicates.length ? predicates.every(f => f(todo)) : true)
+    }
   },
   methods: {
     ...mapActions(['getTodos', 'getUsers']),
@@ -55,7 +78,7 @@ export default {
     if (! this.users) this.getUsers()
     this.getTodos()
     const favoritesFromStorage = localStorage.getItem("favorites")
-    if (favoritesFromStorage) this.favorites = favoritesFromStorage.split(',');
+    if (favoritesFromStorage) this.favorites = favoritesFromStorage.split(',').map(fav => parseInt(fav));
   }
 }
 </script>

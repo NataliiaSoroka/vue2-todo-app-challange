@@ -16,9 +16,11 @@
         @input="updateValue"
         @keyup.enter="emitKeyUpEnter"
       >
-      <transition-group name="validation-fade"
-                        mode="out-in"
-                        class="a-input__validation">
+      <transition-group
+        name="validation-fade"
+        mode="out-in"
+        class="a-input__validation"
+      >
         <span v-if="hasValidationError" :key="validationMessage.validator">
           {{ validationMessage.message }}
         </span>
@@ -58,19 +60,19 @@ export default {
     placeholder: {
       type: String,
       default: null
-    }
-  },
-  data() {
-    return {
-      initialType: this.type
-    }
+    },
+    bordered: {
+      type: Boolean,
+      default: false,
+    },
   },
   computed: {
     wrapperClasses() {
       return [
         'a-input__wrapper',
         { 'a-input--disabled': this.disabled },
-        { 'a-input--error': this.hasValidationError }
+        { 'a-input--error': this.hasValidationError },
+        { 'a-input--bordered': this.bordered },
       ]
     },
     errorReset() {
@@ -131,7 +133,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
 .a-input {
   &__container {
@@ -184,6 +186,12 @@ export default {
     margin-bottom: 5px;
   }
 
+  &--bordered {
+    .a-input__field {
+      border-color: $light-gray;
+    }
+  }
+
   &--error {
     .a-input__field {
       border: 1px solid $red-color;
@@ -195,5 +203,6 @@ export default {
       background-color: $light-gray;
     }
   }
+
 }
 </style>

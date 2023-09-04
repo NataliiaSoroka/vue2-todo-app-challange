@@ -1,18 +1,18 @@
 <template>
-  <header class="default-header">
+  <header class="header">
   </header>
 </template>
 
 <script>
 export default {
-  name: 'DefaultHeader'
+  name: 'AHeader'
 }
 </script>
 
 <style lang="scss">
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
-.default-header {
+.header {
   width: 100%;
   height: 60px;
   background-color: $main-color;

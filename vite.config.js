@@ -24,7 +24,7 @@ export default {
   },
   css: {
     preprocessorOptions: {
-      scss: { additionalData: '@import "styles/reset.scss";' },
+      scss: { additionalData: '@import "styles/styles.scss";' },
     },
   },
 }

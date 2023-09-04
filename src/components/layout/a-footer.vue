@@ -1,18 +1,18 @@
 <template>
-  <footer class="default-footer">
+  <footer class="footer">
   </footer>
 </template>
 
 <script>
 export default {
-  name: 'DefaultFooter',
+  name: 'AFooter',
 }
 </script>
 
 <style lang="scss">
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
-.default-footer {
+.footer {
   width: 100%;
   height: 270px;
   background-color: $main-color;

@@ -1,29 +1,30 @@
 <template>
   <div>
-    <component
-      :is="layoutComponent"
-    >
+    <a-header />
+    <div class="body">
       <router-view />
-    </component>
+    </div>
+    <a-footer />
   </div>
 </template>
 <script>
-// import layouts from 'constants/layouts'
-import LayoutDefault from 'layouts/default.vue'
+import { AHeader, AFooter } from 'components/layout'
 
 export default {
   name: 'App',
   components: {
-    LayoutDefault,
-  },
-  computed: {
-    layoutComponent() {
-      return LayoutDefault
-    },
+    AHeader,
+    AFooter
   },
 }
 </script>
 
 
-<style>
+<style lang="scss">
+@import 'styles/variables';
+
+.body {
+  background-color: $background-color;
+  min-height: calc(100vh - 330px);
+}
 </style>

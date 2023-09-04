@@ -74,7 +74,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
 .btn {
   &__wrapper {
@@ -100,30 +100,30 @@ export default {
   &__color {
     &--green {
       background-color: $green-color;
-      color: white;
+      color: $white-color;
 
       &:hover,
       &:focus {
-        background-color: white;
+        background-color: $white-color;
         color: $green-color;
       }
     }
 
     &--white {
-      background-color: white;
+      background-color: $white-color;
       color: $green-color;
 
       &:hover,
       &:focus {
-        background-color: rgba(81, 153, 69, 0.5);
-        color: white;
+        background-color: $green-opacity-color;
+        color: $white-color;
       }
     }
   }
 
 }
 .btn__spinner {
-  background-color: rgba(255, 255, 255, 0.4);
+  background-color: $white-opacity-color;
   height: 43px;
   width: 100%;
   position: absolute;

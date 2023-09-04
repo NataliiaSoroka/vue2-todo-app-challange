@@ -61,7 +61,7 @@ export default {
       return this.mapUsersById && this.mapUsersById[this.item.userId]
     },
     isFavorite() {
-      return this.favorites.find(f => f == this.item.id)
+      return this.favorites.find(f => f === this.item.id)
     },
   },
   methods: {

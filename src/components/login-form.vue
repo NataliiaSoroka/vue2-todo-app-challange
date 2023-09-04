@@ -110,7 +110,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
 .login-form {
   &__desc {
@@ -125,10 +125,10 @@ export default {
   &__error {
     padding: 0.75rem 1.25rem;
     margin-bottom: 1rem;
-    border: 1px solid #f5c6cb;
+    border: 1px solid $alert-border-color;
     border-radius: 0.25rem;
-    color: #721c24;
-    background-color: #f8d7da;
+    color: $alert-text-color;
+    background-color: $alert-bg-color;
   }
 }
 

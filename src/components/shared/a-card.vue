@@ -4,7 +4,7 @@
       v-if="title"
       class="a-card__header"
     >
-      {{  title }}
+      {{ title }}
     </div>
     <div class="a-card__body">
       <slot></slot>
@@ -25,7 +25,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import 'styles/variables.scss';
+@import 'styles/variables';
 
 .a-card {
   background: $light-gray;
