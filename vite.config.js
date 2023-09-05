@@ -3,9 +3,6 @@ import path from 'path'
 
 export default {
   plugins: [vue()],
-  build: {
-    outDir: 'docs'
-  },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss'],
     alias: {
