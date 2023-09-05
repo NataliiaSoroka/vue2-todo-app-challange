@@ -12,7 +12,9 @@ what's missing, when compare to real world project:
 
 run locally:
 
+```
 npm run dev
+```
 
 
 production build are configured to work with github pages
