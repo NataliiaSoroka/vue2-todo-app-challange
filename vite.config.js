@@ -3,6 +3,7 @@ import path from 'path'
 
 export default {
   plugins: [vue()],
+  base: '/vue2-todo-app-challange/',
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss'],
     alias: {
