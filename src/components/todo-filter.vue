@@ -16,25 +16,13 @@
         />
       </div>
     </div>
-    <a-input
-      v-model="filterModel.title"
-      label="Title"
-    />
+    <a-input v-model="filterModel.title" label="Title" />
     <div class="todo-filter__row">
       <div class="todo-filter__col todo-filter__col--margin">
-        <a-button
-          type="button"
-          @click="setFilter"
-        >
-          Filter
-        </a-button>
+        <a-button type="button" @click="setFilter"> Filter </a-button>
       </div>
       <div class="todo-filter__col">
-        <a-button
-          type="button"
-          @click="resetFilter"
-          color="white"
-        >
+        <a-button type="button" @click="resetFilter" color="white">
           Reset
         </a-button>
       </div>
@@ -44,13 +32,9 @@
 
 <script>
 import { todoStatuses } from 'constants'
-import {
-  ASelect,
-  ACard,
-  AInput,
-  AButton,
-} from 'components/shared'
-import { mapGetters } from 'vuex'
+import { ASelect, ACard, AInput, AButton } from 'components/shared'
+import { mapState } from 'vuex'
+import { mapUsersById, usersFromTodos } from 'utils/map-state'
 
 export default {
   name: 'TodoFilter',
@@ -58,31 +42,31 @@ export default {
     ASelect,
     ACard,
     AInput,
-    AButton,
+    AButton
   },
   props: {
     value: {
       type: Object,
-      default: () => ({}),
-    },
+      default: () => ({})
+    }
   },
   data() {
     return {
       todoStatuses,
-      filterModel: { ...initFilterModel },
+      filterModel: { ...initFilterModel }
     }
   },
   computed: {
-    ...mapGetters(['mapUsersById', 'usersFromTodos']),
+    ...mapState({ mapUsersById, usersFromTodos }),
     usersOptions() {
       if (!this.mapUsersById || !this.usersFromTodos) return []
-      const array = this.usersFromTodos.map(id => ({
+      const array = this.usersFromTodos.map((id) => ({
         text: this.mapUsersById[id]?.name,
         value: id
       }))
-      array.unshift({ text: 'All', value: null });
+      array.unshift({ text: 'All', value: null })
       return array
-    },
+    }
   },
   methods: {
     setFilter() {
@@ -91,7 +75,7 @@ export default {
     resetFilter() {
       this.filterModel = { ...initFilterModel }
       this.setFilter()
-    },
+    }
   }
 }
 

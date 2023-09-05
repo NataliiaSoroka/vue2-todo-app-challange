@@ -2,9 +2,8 @@
   <transition :name="disableTransition ? null : 'fade-spinner'">
     <div
       class="ui-progress-circular"
-
       :class="classes"
-      :style="{ 'width': size + 'px', 'height': size + 'px' }"
+      :style="{ width: size + 'px', height: size + 'px' }"
     >
       <svg
         class="ui-progress-circular__determinate"
@@ -14,7 +13,6 @@
         :aria-valuenow="progress"
         :height="size"
         :width="size"
-
         v-if="type === 'determinate'"
       >
         <circle
@@ -25,7 +23,10 @@
           :cy="size / 2"
           :r="radius"
           :stroke-dasharray="strokeDashArray"
-          :style="{ 'stroke-dashoffset': strokeDashOffset, 'stroke-width': calculatedStroke }"
+          :style="{
+            'stroke-dashoffset': strokeDashOffset,
+            'stroke-width': calculatedStroke
+          }"
         ></circle>
       </svg>
 
@@ -35,7 +36,6 @@
         viewBox="25 25 50 50"
         :aria-valuemax="100"
         :aria-valuemin="0"
-
         v-else
       >
         <circle
@@ -99,7 +99,7 @@ export default {
     strokeDashOffset() {
       const progress = this.moderateProgress(this.progress)
       const circumference = 2 * Math.PI * this.radius
-      return (100 - progress) / 100 * circumference
+      return ((100 - progress) / 100) * circumference
     },
     radius() {
       const stroke = this.stroke ? this.stroke : 4
@@ -134,13 +134,11 @@ export default {
 </script>
 
 <style lang="scss">
-
 $ui-progress-indeterminate-rotation-duration: 0.7s !default;
 $ui-progress-indeterminate-color-duration: 6s !default;
 $ui-progress-determinate-transition-duration: 0.3s !default;
 
 .ui-progress-circular {
-
   position: absolute;
   width: 100%;
   top: 0;
@@ -221,7 +219,9 @@ $ui-progress-determinate-transition-duration: 0.3s !default;
 
 .ui-progress-circular--transition-fade-enter-active,
 .ui-progress-circular--transition-fade-leave-active {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .ui-progress-circular--transition-fade-enter,

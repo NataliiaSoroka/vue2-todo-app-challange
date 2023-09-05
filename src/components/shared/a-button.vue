@@ -6,19 +6,13 @@
         :class="classes"
         :disabled="disabled || inProgress"
         @click="onClick"
-        >
+      >
         <slot></slot>
       </button>
     </div>
     <transition name="fade-spinner" mode="out-in">
-      <div
-        v-if="inProgress"
-        class="btn__spinner"
-      >
-        <spinner
-          :size=43
-          :color="color"
-        />
+      <div v-if="inProgress" class="btn__spinner">
+        <spinner :size="43" :color="color" />
       </div>
     </transition>
   </div>
@@ -51,7 +45,7 @@ export default {
     color: {
       type: String,
       default: 'green'
-    },
+    }
   },
   computed: {
     classes() {
@@ -120,7 +114,6 @@ export default {
       }
     }
   }
-
 }
 .btn__spinner {
   background-color: $white-opacity-color;

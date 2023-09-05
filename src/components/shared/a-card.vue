@@ -1,9 +1,6 @@
 <template>
   <article class="a-card">
-    <div
-      v-if="title"
-      class="a-card__header"
-    >
+    <div v-if="title" class="a-card__header">
       {{ title }}
     </div>
     <div class="a-card__body">
@@ -18,9 +15,9 @@ export default {
   props: {
     title: {
       type: String,
-      default: '',
+      default: ''
     }
-  },
+  }
 }
 </script>
 

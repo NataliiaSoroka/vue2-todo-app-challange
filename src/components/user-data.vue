@@ -1,11 +1,7 @@
 <template>
   <a-card :title="user.username">
     <div class="user-data">
-      <div
-        v-for="row in userDataView"
-        :key="row.field"
-        class="user-data__row"
-      >
+      <div v-for="row in userDataView" :key="row.field" class="user-data__row">
         <div class="user-data__icon">
           <i :class="`las la-${row.icon}`"></i>
         </div>
@@ -18,15 +14,15 @@
 </template>
 
 <script>
-import userDataView from 'constants/user-data-view'
-import { ACard } from 'components/shared';
+import { userDataView } from 'constants'
+import { ACard } from 'components/shared'
 
 export default {
   name: 'UserData',
   components: { ACard },
   data() {
     return {
-      userDataView,
+      userDataView
     }
   },
   props: {
@@ -34,8 +30,7 @@ export default {
       type: Object,
       default: () => ({})
     }
-  },
-
+  }
 }
 </script>
 

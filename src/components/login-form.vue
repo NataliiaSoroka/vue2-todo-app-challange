@@ -30,11 +30,12 @@
 </template>
 
 <script>
-import routeNames from 'constants/route-names'
+import { routeNames } from 'constants'
 import { AInput, AButton } from 'components/shared';
 import { required, alpha } from 'vuelidate/dist/validators.min.js'
 import { isPhone } from 'utils/validators'
-import { mapActions, mapGetters } from 'vuex'
+import { mapUsersByNamePhone } from 'utils/map-state'
+import { mapActions, mapState } from 'vuex'
 
 export default {
   name: 'LoginForm',
@@ -65,7 +66,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['mapUsersByNamePhone']),
+    ...mapState({ mapUsersByNamePhone }),
   },
   methods: {
     ...mapActions(['getUsers']),

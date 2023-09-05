@@ -8,7 +8,7 @@
 
 <script>
 import { LoginForm } from 'components'
-import { ACard } from 'components/shared';
+import { ACard } from 'components/shared'
 
 export default {
   name: 'LoginPage',

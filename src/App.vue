@@ -15,10 +15,9 @@ export default {
   components: {
     AHeader,
     AFooter
-  },
+  }
 }
 </script>
-
 
 <style lang="scss">
 @import 'styles/variables';

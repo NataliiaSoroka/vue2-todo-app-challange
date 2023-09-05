@@ -2,37 +2,33 @@ import { api } from '../api'
 import * as types from '../mutation-types'
 
 const state = {
-  users: null,
+  users: null
 }
 
 const getters = {
-  users: state => state.users,
-  mapUsersByNamePhone: state => state.users?.reduce((res, user) => {
-    res[`${user.username}${user.phone}`] = user
-    return res
-  }, {}),
-  mapUsersById: state => state.users?.reduce((res, user) => {
-    res[user.id] = user
-    return res
-  }, {}),
+  users: (state) => state.users,
 }
 
 const actions = {
-  async getUsers({ commit }) {
-    const data = await fetch(api.users)
-    commit(types.GET_USERS, await data.json())
-  },
+  async getUsers({ commit, rootState }) {
+    try {
+      const data = await api[rootState.settings.apiProvider].fetchUsers()
+      commit(types.GET_USERS, data)
+    } catch (err) {
+      console.error(err)
+    }
+  }
 }
 
 const mutations = {
   [types.GET_USERS](state, users) {
     state.users = users
-  },
+  }
 }
 
 export default {
   state,
   getters,
   actions,
-  mutations,
+  mutations
 }

@@ -13,12 +13,7 @@
       :disabled="disabled"
       @input="updateValue"
     >
-      <option
-        v-if="placeholder"
-        disabled
-        value=""
-        :selected="value === ''"
-      >
+      <option v-if="placeholder" disabled value="" :selected="value === ''">
         {{ placeholder }}
       </option>
       <option
@@ -49,31 +44,31 @@ export default {
   props: {
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     value: {
       type: String,
-      default: null,
+      default: null
     },
     options: {
       type: Array,
-      default: () => [],
+      default: () => []
     },
     placeholder: {
       type: String,
-      default: '',
+      default: ''
     },
     optionText: {
       type: String,
-      default: 'text',
+      default: 'text'
     },
     optionValue: {
       type: String,
-      default: 'value',
+      default: 'value'
     },
     disabled: {
       type: Boolean,
-      default: false,
+      default: false
     },
     error: {
       default: null
@@ -84,8 +79,8 @@ export default {
     },
     bordered: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     errorReset() {
@@ -103,7 +98,7 @@ export default {
         for (const param in $params) {
           if (this.error[param] === false) {
             const matchedError = validationMessages.find(
-              validation => validation.validator === param
+              (validation) => validation.validator === param
             )
             if (!matchedError) {
               console.warn(
@@ -137,7 +132,7 @@ export default {
         this.error.$touch()
       }
       this.$emit('blur', e)
-    },
+    }
   }
 }
 </script>

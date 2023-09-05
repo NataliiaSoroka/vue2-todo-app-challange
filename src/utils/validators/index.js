@@ -1,5 +1,3 @@
 import isPhone from './isPhone'
 
-export {
-  isPhone,
-}
+export { isPhone }

@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="add-todo-form"
-    @submit.prevent="addTodoItem"
-  >
+  <form class="add-todo-form" @submit.prevent="addTodoItem">
     <a-input
       class="add-todo-form__input"
       v-model.trim="model.title"
@@ -18,23 +15,15 @@
       placeholder="User"
       bordered
     />
-    <a-button
-      type="submit"
-      :inProgress="inProgress"
-    >
-      Add
-    </a-button>
+    <a-button type="submit" :inProgress="inProgress"> Add </a-button>
   </form>
 </template>
 
 <script>
 import { required } from 'vuelidate/dist/validators.min.js'
-import { mapGetters, mapActions } from 'vuex'
-import {
-  ASelect,
-  AInput,
-  AButton,
-} from 'components/shared'
+import { mapActions, mapState } from 'vuex'
+import { ASelect, AInput, AButton } from 'components/shared'
+import { mapUsersById, usersFromTodos } from 'utils/map-state'
 
 export default {
   name: 'AddTodoForm',
@@ -47,28 +36,28 @@ export default {
     return {
       errorMessage: '',
       inProgress: false,
-      model: { ...initModel },
+      model: { ...initModel }
     }
   },
   validations: {
     model: {
       title: {
-        required,
+        required
       },
       userId: {
-        required,
+        required
       }
     }
   },
   computed: {
-    ...mapGetters(['mapUsersById', 'usersFromTodos']),
+    ...mapState({ mapUsersById, usersFromTodos }),
     usersOptions() {
       if (!this.mapUsersById || !this.usersFromTodos) return []
-      return this.usersFromTodos?.map(id => ({
+      return this.usersFromTodos?.map((id) => ({
         text: this.mapUsersById[id]?.name,
         value: id
       }))
-    },
+    }
   },
   methods: {
     ...mapActions(['addTodo']),
@@ -92,7 +81,7 @@ export default {
 
 const initModel = {
   title: '',
-  userId: '',
+  userId: ''
 }
 </script>
 

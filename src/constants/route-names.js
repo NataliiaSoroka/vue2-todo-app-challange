@@ -5,5 +5,5 @@ const todos = 'todos-index'
 export default {
   index,
   login,
-  todos,
+  todos
 }

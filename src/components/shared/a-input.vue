@@ -15,7 +15,7 @@
         @focus="onFocus"
         @input="updateValue"
         @keyup.enter="emitKeyUpEnter"
-      >
+      />
       <transition-group
         name="validation-fade"
         mode="out-in"
@@ -37,7 +37,7 @@ export default {
   props: {
     label: {
       type: String,
-      default: '',
+      default: ''
     },
     value: {
       type: [String, Number]
@@ -63,8 +63,8 @@ export default {
     },
     bordered: {
       type: Boolean,
-      default: false,
-    },
+      default: false
+    }
   },
   computed: {
     wrapperClasses() {
@@ -72,7 +72,7 @@ export default {
         'a-input__wrapper',
         { 'a-input--disabled': this.disabled },
         { 'a-input--error': this.hasValidationError },
-        { 'a-input--bordered': this.bordered },
+        { 'a-input--bordered': this.bordered }
       ]
     },
     errorReset() {
@@ -90,7 +90,7 @@ export default {
         for (const param in $params) {
           if (this.error[param] === false) {
             const matchedError = validationMessages.find(
-              validation => validation.validator === param
+              (validation) => validation.validator === param
             )
             if (!matchedError) {
               console.warn(
@@ -203,6 +203,5 @@ export default {
       background-color: $light-gray;
     }
   }
-
 }
 </style>

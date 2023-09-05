@@ -3,12 +3,7 @@
     <i :class="iconClasses"></i>
     <div>
       <span>{{ item.title }}</span>
-      <div
-        v-if="user"
-        class="todo-item__author"
-      >
-        @{{ user.username }}
-      </div>
+      <div v-if="user" class="todo-item__author">@{{ user.username }}</div>
     </div>
     <div class="todo-item__actions">
       <i
@@ -30,8 +25,9 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters, mapActions, mapState } from 'vuex'
 import { todoStatuses } from 'constants'
+import { mapUsersById } from 'utils/map-state'
 
 export default {
   name: 'TodoItem',
@@ -39,30 +35,27 @@ export default {
     item: {
       type: Object,
       default: () => ({})
-    },
-    favorites: {
-      type: Array,
-      default: () => [],
-    },
+    }
   },
   computed: {
-    ...mapGetters(['mapUsersById']),
+    ...mapGetters(['favorites']),
+    ...mapState({ mapUsersById }),
     statusObject() {
-      return todoStatuses.find(status => status.value == this.item.completed)
+      return todoStatuses.find((status) => status.value == this.item.completed)
     },
     iconClasses() {
       return [
         'todo-item__icon',
         this.statusObject.icon,
-        `todo-item__icon--${this.statusObject.color}`,
+        `todo-item__icon--${this.statusObject.color}`
       ]
     },
-    user () {
+    user() {
       return this.mapUsersById && this.mapUsersById[this.item.userId]
     },
     isFavorite() {
-      return this.favorites.find(f => f === this.item.id)
-    },
+      return this.favorites.find((f) => f === this.item.id)
+    }
   },
   methods: {
     ...mapActions(['removeTodo']),
@@ -75,7 +68,7 @@ export default {
     removeItem() {
       this.removeTodo(this.item.id)
     }
-  },
+  }
 }
 </script>
 

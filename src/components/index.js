@@ -4,10 +4,4 @@ import UserData from './user-data.vue'
 import TodoFilter from './todo-filter.vue'
 import AddTodoForm from './add-todo-form.vue'
 
-export {
-  LoginForm,
-  TodoItem,
-  UserData,
-  TodoFilter,
-  AddTodoForm,
-}
+export { LoginForm, TodoItem, UserData, TodoFilter, AddTodoForm }
