@@ -1,7 +1,7 @@
 import * as types from '../mutation-types'
 
 const state = {
-  apiProvider: 'main',
+  apiProvider: 'main'
 }
 
 const mutations = {

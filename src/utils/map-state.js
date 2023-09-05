@@ -15,8 +15,4 @@ const usersFromTodos = (state) => {
   return Array.from(set)
 }
 
-export {
-  mapUsersByNamePhone,
-  mapUsersById,
-  usersFromTodos,
-}
+export { mapUsersByNamePhone, mapUsersById, usersFromTodos }

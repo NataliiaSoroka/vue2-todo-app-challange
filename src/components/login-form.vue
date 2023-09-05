@@ -1,8 +1,5 @@
 <template>
-  <form
-    class="login-form"
-    @submit.prevent="login"
-  >
+  <form class="login-form" @submit.prevent="login">
     <p class="login-form__desc">description</p>
     <a-input
       v-model.trim="model.username"
@@ -14,16 +11,8 @@
       :error="$v.model.phone"
       placeholder="Phone Number"
     />
-    <a-button
-      type="submit"
-      :inProgress="inProgress"
-    >
-      Register
-    </a-button>
-    <div
-      v-if="errorMessage"
-      class="login-form__error"
-    >
+    <a-button type="submit" :inProgress="inProgress"> Register </a-button>
+    <div v-if="errorMessage" class="login-form__error">
       {{ errorMessage }}
     </div>
   </form>
@@ -31,7 +20,7 @@
 
 <script>
 import { routeNames } from 'constants'
-import { AInput, AButton } from 'components/shared';
+import { AInput, AButton } from 'components/shared'
 import { required, alpha } from 'vuelidate/dist/validators.min.js'
 import { isPhone } from 'utils/validators'
 import { mapUsersByNamePhone } from 'utils/map-state'
@@ -41,7 +30,7 @@ export default {
   name: 'LoginForm',
   components: {
     AInput,
-    AButton,
+    AButton
   },
   data() {
     return {
@@ -49,7 +38,7 @@ export default {
       inProgress: false,
       model: {
         username: '',
-        phone: '',
+        phone: ''
       }
     }
   },
@@ -57,7 +46,7 @@ export default {
     model: {
       username: {
         required,
-        alpha,
+        alpha
       },
       phone: {
         required,
@@ -66,7 +55,7 @@ export default {
     }
   },
   computed: {
-    ...mapState({ mapUsersByNamePhone }),
+    ...mapState({ mapUsersByNamePhone })
   },
   methods: {
     ...mapActions(['getUsers']),
@@ -85,27 +74,30 @@ export default {
 
       const request = new Promise((resolve, reject) => {
         setTimeout(() => {
-          const user = this.mapUsersByNamePhone[`${this.model.username}${this.model.phone}`]
+          const user =
+            this.mapUsersByNamePhone[
+              `${this.model.username}${this.model.phone}`
+            ]
           if (user) resolve(user)
           else reject('login error')
         }, 3000)
       })
 
       try {
-        const data = await request;
+        const data = await request
         this.$router.push({
           name: routeNames.todos,
-          params: { userId: data.id },
+          params: { userId: data.id }
         })
       } catch (err) {
-        this.errorMessage = err;
+        this.errorMessage = err
       } finally {
         this.inProgress = false
       }
-    },
+    }
   },
   mounted() {
-    this.loadUsersData();
+    this.loadUsersData()
   }
 }
 </script>
@@ -132,5 +124,4 @@ export default {
     background-color: $alert-bg-color;
   }
 }
-
 </style>

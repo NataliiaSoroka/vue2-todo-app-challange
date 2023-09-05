@@ -5,5 +5,5 @@ import settings from './settings'
 export default {
   users,
   todos,
-  settings,
+  settings
 }
